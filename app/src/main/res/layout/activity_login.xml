@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.sm.kucek.viewmodel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activityLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="70dp"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".view.activity.LoginActivity">
+
+        <TextView
+            android:id="@+id/register_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_horizontal"
+            android:text="@{viewmodel.loginMessage}"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorAccent"
+            android:visibility="@{viewmodel.loginMessageVisibility}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="270dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="30dp"
+            android:width="50dp"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            app:addTextChangedListener="@{viewmodel.usernameUpdate}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_message" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:addTextChangedListener="@{viewmodel.passwordUpdate}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_username" />
+
+        <ImageButton
+            android:id="@+id/imgBtnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:onClick="@{viewmodel::loginAuthentication}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_password"
+            app:srcCompat="@drawable/btn_login" />
+
+        <ImageButton
+            android:id="@+id/imgBtnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:layout_constraintStart_toEndOf="@+id/imgBtnLogin"
+            app:layout_constraintTop_toTopOf="@+id/imgBtnLogin"
+            android:onClick="@{viewmodel::registerSubmit}"
+            app:srcCompat="@drawable/btn_register" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
